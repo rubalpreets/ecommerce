@@ -8,14 +8,24 @@ export function fetchAllProducts() {
   });
 }
 
-export function fetchProductsByFilter(filter) {
-  //filter = {"category" : "smartphone"}
+export function fetchProductsByFilter(filter, sort) {
+  //filter = {"category" : ["smartphone", "laptops]"}
+  //sort = {_sort:"price", _order:"desc"}
   console.log(filter);
   let queryString = "";
   for (let key in filter) {
-    queryString += `${key}=${filter[key]}&`;
+    const categoryValues = filter[key];
+    if (categoryValues.length > 0) {
+      const lastCategoryValue = categoryValues[categoryValues.length - 1];
+      queryString += `${key}=${lastCategoryValue}&`;
+    }
+  }
+
+  for (let key in sort) {
+    queryString += `${key}=${sort[key]}`;
   }
   console.log(queryString);
+
   return new Promise(async (resolve) => {
     //TODO : remove hardcode server url  form here .. make it dynamic
     const response = await fetch(
