@@ -21,7 +21,13 @@ export default function Signup() {
 
   const submit = (data) => {
     console.log(data);
-    dispatch(createUserAsync({ email: data.email, password: data.password }));
+    dispatch(
+      createUserAsync({
+        email: data.email,
+        password: data.password,
+        addresses: [],
+      })
+    );
   };
 
   return (

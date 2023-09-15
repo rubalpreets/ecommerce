@@ -1,6 +1,4 @@
-import { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -44,6 +42,11 @@ export default function Cart() {
 
       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
         <div className="flow-root">
+          {items.length === 0 && (
+            <h1 className="text-xl font-normal tracking-tight text-gray-400 my-2">
+              Cart is empty
+            </h1>
+          )}
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {items.map((item) => (
               <li key={item.id} className="flex py-6">
@@ -116,12 +119,12 @@ export default function Cart() {
           Shipping and taxes calculated at checkout.
         </p>
         <div className="mt-6">
-          <a
-            href="#"
+          <Link
+            to="/checkout"
             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
           >
             Checkout
-          </a>
+          </Link>
         </div>
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>
