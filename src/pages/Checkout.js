@@ -11,7 +11,10 @@ import {
   selectLoggedInUser,
   updateUserAsync,
 } from "../features/auth/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
+import {
+  createOrderAsync,
+  selectCurrentOrder,
+} from "../features/order/orderSlice";
 
 const products = [
   {
@@ -69,6 +72,7 @@ function Checkout() {
 
   const items = useSelector(selectItems);
   const user = useSelector(selectLoggedInUser);
+  const currentOrder = useSelector(selectCurrentOrder);
 
   const {
     handleSubmit,
@@ -121,6 +125,7 @@ function Checkout() {
       user,
       paymentMethod,
       selectedAdress,
+      status: "pending", // delivered, recieved etc
     };
     console.log(order);
 
@@ -134,6 +139,9 @@ function Checkout() {
   return (
     <>
       {items.length === 0 && <Navigate to="/" replace={true} />}
+      {currentOrder && (
+        <Navigate to={`/order-success/${currentOrder.id}`} replace={true} />
+      )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
