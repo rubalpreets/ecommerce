@@ -23,7 +23,7 @@ const navigation = [
   // { name: "Reports", href: "#", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", link: "/profile" },
+  { name: "My Profile", link: "/profile" },
   { name: "My Orders", link: "/orders" },
   { name: "Sign out", link: "/login" },
 ];
@@ -45,7 +45,7 @@ export default function Navbar({ children }) {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <Link to="/home">
+                      <Link to="/">
                         <img
                           className="h-8 w-8"
                           src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"

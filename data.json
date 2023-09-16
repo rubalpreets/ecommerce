@@ -2341,6 +2341,16 @@
       "id": 1,
       "addresses": [
         {
+          "name": "lasan",
+          "email": "harrysingh2@gmail.com",
+          "phone": "1213213",
+          "country": "Canada",
+          "streetAdress": "231dfgfdgdf",
+          "city": "321",
+          "region": "3sdf",
+          "pinCode": "213"
+        },
+        {
           "name": "Rubal",
           "email": "rubalsingh1998@gmail.com",
           "phone": "1234",
@@ -2351,24 +2361,24 @@
           "pinCode": "12321"
         },
         {
-          "name": "Rubalasqqs",
+          "name": "Rubal",
           "email": "rubalsingh1998@gmail.com",
-          "phone": "123421321",
+          "phone": "1234",
           "country": "India",
-          "streetAdress": "3e32qe3213",
+          "streetAdress": "3e32qe3",
           "city": "Batala",
           "region": "Punjab",
-          "pinCode": "123211"
+          "pinCode": "12321"
         },
         {
           "name": "lasan",
-          "email": "harrysingh@gmail.com",
-          "phone": "1231212",
-          "country": "Mexico",
-          "streetAdress": "`1ascdass",
-          "city": "Batala",
-          "region": "String",
-          "pinCode": "21321"
+          "email": "121`",
+          "phone": "12",
+          "country": "Canada",
+          "streetAdress": "231",
+          "city": "321",
+          "region": "3",
+          "pinCode": "213"
         }
       ]
     },
@@ -2390,7 +2400,29 @@
       ]
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "productId": 2,
+      "id": 1
+    }
+  ],
   "orders": [
     {
       "items": [
@@ -2643,6 +2675,162 @@
       },
       "status": "pending",
       "id": 3
+    },
+    {
+      "items": [
+        {
+          "title": "Eau De Perfume Spray",
+          "description": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
+          "price": 30,
+          "discountPercentage": 10.99,
+          "rating": 4.7,
+          "stock": 105,
+          "brand": "Lord - Al-Rehab",
+          "category": "fragrances",
+          "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/15/1.jpg",
+            "https://i.dummyjson.com/data/products/15/2.jpg",
+            "https://i.dummyjson.com/data/products/15/3.jpg",
+            "https://i.dummyjson.com/data/products/15/4.jpg",
+            "https://i.dummyjson.com/data/products/15/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 1,
+          "productId": 15,
+          "id": 1
+        }
+      ],
+      "totalAmount": 60,
+      "totalItems": 2,
+      "user": {
+        "email": "rubalsingh1998@gmail.com",
+        "password": "1212",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "Rubal",
+            "email": "rubalsingh1998@gmail.com",
+            "phone": "1234",
+            "country": "India",
+            "streetAdress": "3e32qe3",
+            "city": "Batala",
+            "region": "Punjab",
+            "pinCode": "12321"
+          },
+          {
+            "name": "Rubalasqqs",
+            "email": "rubalsingh1998@gmail.com",
+            "phone": "123421321",
+            "country": "India",
+            "streetAdress": "3e32qe3213",
+            "city": "Batala",
+            "region": "Punjab",
+            "pinCode": "123211"
+          },
+          {
+            "name": "lasan",
+            "email": "harrysingh@gmail.com",
+            "phone": "1231212",
+            "country": "Mexico",
+            "streetAdress": "`1ascdass",
+            "city": "Batala",
+            "region": "String",
+            "pinCode": "21321"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAdress": {
+        "name": "Rubal",
+        "email": "rubalsingh1998@gmail.com",
+        "phone": "1234",
+        "country": "India",
+        "streetAdress": "3e32qe3",
+        "city": "Batala",
+        "region": "Punjab",
+        "pinCode": "12321"
+      },
+      "status": "pending",
+      "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/4/1.jpg",
+            "https://i.dummyjson.com/data/products/4/2.jpg",
+            "https://i.dummyjson.com/data/products/4/3.jpg",
+            "https://i.dummyjson.com/data/products/4/4.jpg",
+            "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "productId": 4,
+          "id": 1
+        }
+      ],
+      "totalAmount": 280,
+      "totalItems": 1,
+      "user": {
+        "email": "rubalsingh1998@gmail.com",
+        "password": "1212",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "Rubal",
+            "email": "rubalsingh1998@gmail.com",
+            "phone": "1234",
+            "country": "India",
+            "streetAdress": "3e32qe3",
+            "city": "Batala",
+            "region": "Punjab",
+            "pinCode": "12321"
+          },
+          {
+            "name": "Rubalasqqs",
+            "email": "rubalsingh1998@gmail.com",
+            "phone": "123421321",
+            "country": "India",
+            "streetAdress": "3e32qe3213",
+            "city": "Batala",
+            "region": "Punjab",
+            "pinCode": "123211"
+          },
+          {
+            "name": "lasan",
+            "email": "harrysingh@gmail.com",
+            "phone": "1231212",
+            "country": "Mexico",
+            "streetAdress": "`1ascdass",
+            "city": "Batala",
+            "region": "String",
+            "pinCode": "21321"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAdress": {
+        "name": "Rubalasqqs",
+        "email": "rubalsingh1998@gmail.com",
+        "phone": "123421321",
+        "country": "India",
+        "streetAdress": "3e32qe3213",
+        "city": "Batala",
+        "region": "Punjab",
+        "pinCode": "123211"
+      },
+      "status": "pending",
+      "id": 5
     }
   ]
 }

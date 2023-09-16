@@ -7,14 +7,12 @@ import {
   updateCartAsync,
 } from "../features/cart/cartSlice";
 import { useState } from "react";
-import {
-  selectLoggedInUser,
-  updateUserAsync,
-} from "../features/auth/authSlice";
+import { updateUserAsync } from "../features/auth/authSlice";
 import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
 
 const products = [
   {
@@ -71,7 +69,7 @@ function Checkout() {
   const dispatch = useDispatch();
 
   const items = useSelector(selectItems);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const currentOrder = useSelector(selectCurrentOrder);
 
   const {
@@ -118,18 +116,22 @@ function Checkout() {
   };
 
   const handleOrder = () => {
-    const order = {
-      items,
-      totalAmount,
-      totalItems,
-      user,
-      paymentMethod,
-      selectedAdress,
-      status: "pending", // delivered, recieved etc
-    };
-    console.log(order);
+    if (selectedAdress) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        paymentMethod,
+        selectedAdress,
+        status: "pending", // delivered, recieved etc
+      };
+      console.log(order);
 
-    dispatch(createOrderAsync(order));
+      dispatch(createOrderAsync(order));
+    } else {
+      alert("Please select an Address");
+    }
 
     //TODO : redirect to order success page
     //TODO : clear cart after order
@@ -361,13 +363,13 @@ function Checkout() {
                           />
                           <div className="min-w-0 flex-auto">
                             <p className="text-sm font-semibold leading-6 text-gray-900">
-                              {address.name}
+                              Name: {address.name}
                             </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                              {address.street}
+                            <p className="mt-1 truncate text-sm leading-5 text-gray-500">
+                              Street: {address.streetAdress}
                             </p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                              {address.pinCode}
+                            <p className="mt-1 truncate text-sm leading-5 text-gray-500">
+                              Pin / Zip Code: {address.pinCode}
                             </p>
                           </div>
                         </div>
@@ -376,7 +378,10 @@ function Checkout() {
                             Phone: {address.phone}
                           </p>
                           <p className="text-sm leading-6 text-gray-500">
-                            {address.city}
+                            City: {address.city}
+                          </p>
+                          <p className="text-sm leading-6 text-gray-500">
+                            Province: {address.region}
                           </p>
                         </div>
                       </li>
