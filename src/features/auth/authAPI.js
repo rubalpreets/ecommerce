@@ -37,3 +37,10 @@ export function checkUser(loginInfo) {
     }
   });
 }
+
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    //TODO remove session from server
+    resolve({ data: "success" });
+  });
+}

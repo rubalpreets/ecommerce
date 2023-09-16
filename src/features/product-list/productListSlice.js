@@ -5,6 +5,8 @@ import {
   fetchAllBrands,
   fetchAllCategories,
   fetchProductById,
+  createProduct,
+  updateProduct,
 } from "./productListAPI";
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -56,6 +58,26 @@ export const fetchProductByIdAsync = createAsyncThunk(
   "product/fetchProductById",
   async (id) => {
     const response = await fetchProductById(id);
+    // The value we return becomes the `fulfilled` action payload
+    // console.log(response.data);
+    return response.data;
+  }
+);
+
+export const createProductAsync = createAsyncThunk(
+  "product/createProduct",
+  async (product) => {
+    const response = await createProduct(product);
+    // The value we return becomes the `fulfilled` action payload
+    // console.log(response.data);
+    return response.data;
+  }
+);
+
+export const updateProductAsync = createAsyncThunk(
+  "product/updateProduct",
+  async (update) => {
+    const response = await updateProduct(update);
     // The value we return becomes the `fulfilled` action payload
     // console.log(response.data);
     return response.data;
@@ -125,6 +147,25 @@ export const productSlice = createSlice({
       .addCase(fetchProductByIdAsync.fulfilled, (state, action) => {
         state.allProducts.status = "idle";
         state.allProducts.selectedProduct = action.payload;
+      })
+
+      .addCase(createProductAsync.pending, (state) => {
+        state.allProducts.status = "loading";
+      })
+      .addCase(createProductAsync.fulfilled, (state, action) => {
+        state.allProducts.status = "idle";
+        state.allProducts.products.push(action.payload);
+      })
+
+      .addCase(updateProductAsync.pending, (state) => {
+        state.allProducts.status = "loading";
+      })
+      .addCase(updateProductAsync.fulfilled, (state, action) => {
+        state.allProducts.status = "idle";
+        const index = state.allProducts.products.findIndex(
+          (product) => product.id === action.payload.id
+        );
+        state.allProducts.products[index] = action.payload;
       });
   },
 });

@@ -23,8 +23,8 @@
       "id": 2,
       "title": "iPhone X",
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
+      "price": 1600,
+      "discountPercentage": 17,
       "rating": 4.44,
       "stock": 34,
       "brand": "Apple",
@@ -39,17 +39,20 @@
     },
     {
       "id": 3,
-      "title": "Samsung Universe 9",
+      "title": "Samsung Universe 97",
       "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-      "price": 1249,
-      "discountPercentage": 15.46,
+      "price": 25,
+      "discountPercentage": 15,
       "rating": 4.09,
       "stock": 36,
       "brand": "Samsung",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
       "images": [
-        "https://i.dummyjson.com/data/products/3/1.jpg"
+        "https://i.dummyjson.com/data/products/3/1.jpg",
+        "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/3/thumbnail.jpg"
       ]
     },
     {
@@ -1838,6 +1841,43 @@
         "https://i.dummyjson.com/data/products/100/3.jpg",
         "https://i.dummyjson.com/data/products/100/thumbnail.jpg"
       ]
+    },
+    {
+      "title": "Macbook air 2023",
+      "description": "description  mnbsjkfnsfewdfewflnwefnwe",
+      "price": 1600,
+      "discountPercentage": 10,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+      ],
+      "rating": 0,
+      "id": 101
+    },
+    {
+      "title": "xiomi book",
+      "description": "xiomi book 20221",
+      "price": 1500,
+      "discountPercentage": 4,
+      "stock": 300,
+      "brand": "ROREC White Rice",
+      "category": "sunglasses",
+      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+      ],
+      "rating": 0,
+      "id": 102,
+      "deleted": true
     }
   ],
   "categories": [
@@ -2339,6 +2379,7 @@
       "email": "rubalsingh1998@gmail.com",
       "password": "1212",
       "id": 1,
+      "role": "user",
       "addresses": [
         {
           "name": "lasan",
@@ -2386,6 +2427,7 @@
       "email": "test@gmail.com",
       "password": "123Qwert",
       "id": 2,
+      "role": "user",
       "addresses": [
         {
           "name": "Rubal",
@@ -2398,6 +2440,13 @@
           "pinCode": "13"
         }
       ]
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "@BulleT500@",
+      "addresses": [],
+      "role": "admin",
+      "id": 3
     }
   ],
   "cart": [
