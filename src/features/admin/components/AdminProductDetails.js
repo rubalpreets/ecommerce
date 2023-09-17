@@ -8,7 +8,8 @@ import {
 } from "../../product-list/productListSlice";
 import { Link, useParams } from "react-router-dom";
 import { selectLoggedInUser } from "../../auth/authSlice";
-import { addToCartAsync } from "../../cart/cartSlice";
+import { addToCartAsync, selectItems } from "../../cart/cartSlice";
+import { discountedPrice } from "../../../app/constants";
 
 //TODO in server data to add colors, sizes, highlights etc
 
@@ -49,21 +50,25 @@ export default function AdminProductDetails() {
 
   const product = useSelector(selectProduct);
   const user = useSelector(selectLoggedInUser); // for cart info
+  const items = useSelector(selectItems);
 
   useEffect(() => {
     dispath(fetchProductByIdAsync(params.id));
   }, [dispath, params.id]);
 
   const handleCart = (e) => {
-    e.preventDefault();
-    let dispatchvalue = {
-      ...product,
-      quantity: 1,
-      user: user.id,
-      productId: product.id,
-    };
-    delete dispatchvalue.id;
-    dispath(addToCartAsync(dispatchvalue));
+    if (items.findIndex((item) => item.id === product.id) >= 0) {
+      alert("Item Already in Cart");
+    } else {
+      let dispatchvalue = {
+        ...product,
+        quantity: 1,
+        user: user.id,
+        productId: product.id,
+      };
+      delete dispatchvalue.id;
+      dispath(addToCartAsync(dispatchvalue));
+    }
   };
 
   return (
@@ -163,8 +168,11 @@ export default function AdminProductDetails() {
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl tracking-tight text-gray-900">
+              <p className="text-xl line-through tracking-tight text-gray-500">
                 $ {product.price}
+              </p>
+              <p className="text-3xl tracking-tight text-gray-900">
+                $ {discountedPrice(product)}
               </p>
 
               {/* Reviews */}
@@ -313,13 +321,13 @@ export default function AdminProductDetails() {
                   </RadioGroup>
                 </div>
 
-                <button
+                {/* <button
                   onClick={(e) => handleCart(e)}
                   type="submit"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Add to cart
-                </button>
+                </button> */}
               </form>
             </div>
 

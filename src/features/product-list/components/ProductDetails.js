@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdAsync, selectProduct } from "../productListSlice";
 import { useParams } from "react-router-dom";
 import { selectLoggedInUser } from "../../auth/authSlice";
-import { addToCartAsync } from "../../cart/cartSlice";
+import { addToCartAsync, selectItems } from "../../cart/cartSlice";
+import { discountedPrice } from "../../../app/constants";
 
 //TODO in server data to add colors, sizes, highlights etc
 
@@ -46,6 +47,7 @@ export default function ProductDetails() {
 
   const product = useSelector(selectProduct);
   const user = useSelector(selectLoggedInUser); // for cart info
+  const items = useSelector(selectItems);
 
   useEffect(() => {
     dispath(fetchProductByIdAsync(params.id));
@@ -53,14 +55,19 @@ export default function ProductDetails() {
 
   const handleCart = (e) => {
     e.preventDefault();
-    let dispatchvalue = {
-      ...product,
-      quantity: 1,
-      user: user.id,
-      productId: product.id,
-    };
-    delete dispatchvalue.id;
-    dispath(addToCartAsync(dispatchvalue));
+
+    if (items.findIndex((item) => item.productId === product.id) >= 0) {
+      alert("Item Already in Cart");
+    } else {
+      let dispatchvalue = {
+        ...product,
+        quantity: 1,
+        user: user.id,
+        productId: product.id,
+      };
+      delete dispatchvalue.id;
+      dispath(addToCartAsync(dispatchvalue));
+    }
   };
 
   return (
@@ -152,8 +159,11 @@ export default function ProductDetails() {
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl tracking-tight text-gray-900">
+              <p className="text-xl line-through tracking-tight text-gray-500">
                 $ {product.price}
+              </p>
+              <p className="text-3xl tracking-tight text-gray-900">
+                $ {discountedPrice(product)}
               </p>
 
               {/* Reviews */}
