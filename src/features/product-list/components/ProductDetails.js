@@ -56,16 +56,14 @@ export default function ProductDetails() {
   const handleCart = (e) => {
     e.preventDefault();
 
-    if (items.findIndex((item) => item.productId === product.id) >= 0) {
+    if (items.findIndex((item) => item.product.id === product.id) >= 0) {
       alert("Item Already in Cart");
     } else {
       let dispatchvalue = {
-        ...product,
         quantity: 1,
         user: user.id,
-        productId: product.id,
+        product: product.id,
       };
-      delete dispatchvalue.id;
       dispath(addToCartAsync(dispatchvalue));
     }
   };

@@ -57,7 +57,7 @@ export default function AdminProductDetails() {
   }, [dispath, params.id]);
 
   const handleCart = (e) => {
-    if (items.findIndex((item) => item.id === product.id) >= 0) {
+    if (items.findIndex((item) => item.product.id === product.id) >= 0) {
       alert("Item Already in Cart");
     } else {
       let dispatchvalue = {

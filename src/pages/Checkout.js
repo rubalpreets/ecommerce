@@ -81,7 +81,7 @@ function Checkout() {
   } = useForm();
 
   const totalAmount = items.reduce((acc, item) => {
-    acc += discountedPrice(item) * item.quantity;
+    acc += discountedPrice(item.product) * item.quantity;
     return acc;
   }, 0);
 
@@ -91,7 +91,7 @@ function Checkout() {
   }, 0);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ ...item, quantity: +e.target.value })); // +changes to integer
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value })); // +changes to integer
   };
 
   const handleRemove = (e, id) => {
@@ -118,14 +118,19 @@ function Checkout() {
 
   const handleOrder = () => {
     if (selectedAdress) {
+      const itemIds = items.reduce((accu, item) => {
+        accu.push({ product: item.id, quantity: item.quantity });
+        return accu;
+      }, []);
       const order = {
         items,
         totalAmount,
         totalItems,
-        user,
+        user: user.id,
         paymentMethod,
         selectedAdress,
         status: "pending", // delivered, recieved etc
+        date: new Date(),
       };
       console.log(order);
 
@@ -454,8 +459,8 @@ function Checkout() {
                       <li key={item.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                           <img
-                            src={item.thumbnail}
-                            alt={item.title}
+                            src={item.product.thumbnail}
+                            alt={item.product.title}
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -464,19 +469,21 @@ function Checkout() {
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>
-                                <a href={item.href}>{item.title}</a>
+                                <a href={item.product.href}>
+                                  {item.product.title}
+                                </a>
                               </h3>
                               <div>
                                 <p className="ml-4 text-sm line-through text-gray-500">
-                                  $ {item.price}
+                                  $ {item.product.price}
                                 </p>
                                 <p className="ml-4">
-                                  $ {discountedPrice(item)}
+                                  $ {discountedPrice(item.product)}
                                 </p>
                               </div>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
-                              {item.brand}
+                              {item.product.brand}
                             </p>
                           </div>
                           <div className="flex flex-1 items-end justify-between text-sm">

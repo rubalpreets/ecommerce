@@ -16,7 +16,7 @@ export default function Cart() {
   const items = useSelector(selectItems);
 
   const totalAmount = items.reduce((acc, item) => {
-    acc += discountedPrice(item) * item.quantity;
+    acc += discountedPrice(item.product) * item.quantity;
     return acc;
   }, 0);
 
@@ -26,7 +26,7 @@ export default function Cart() {
   }, 0);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ ...item, quantity: +e.target.value })); // +changes to integer
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value })); // +changes to integer
   };
 
   const handleRemove = (e, id) => {
@@ -53,8 +53,8 @@ export default function Cart() {
               <li key={item.id} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img
-                    src={item.thumbnail}
-                    alt={item.title}
+                    src={item.product.thumbnail}
+                    alt={item.product.title}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
@@ -63,16 +63,20 @@ export default function Cart() {
                   <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <h3>
-                        <a href={item.href}>{item.title}</a>
+                        <a href={item.product.href}>{item.product.title}</a>
                       </h3>
                       <div>
                         <p className="ml-4 text-sm line-through text-gray-500">
-                          $ {item.price}
+                          $ {item.product.price}
                         </p>
-                        <p className="ml-4">$ {discountedPrice(item)}</p>
+                        <p className="ml-4">
+                          $ {discountedPrice(item.product)}
+                        </p>
                       </div>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
+                    <p className="mt-1 text-sm text-gray-500">
+                      {item.product.brand}
+                    </p>
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
                     <div className="text-gray-500">

@@ -57,7 +57,16 @@ export const userSlice = createSlice({
       .addCase(fetchLoggedInUserOrdersAsync.fulfilled, (state, action) => {
         state.status = "idle";
         // this info can be diffrent from the logged in user
-        state.userOrders = action.payload;
+        const userOrders = action.payload;
+        const sortedUserOrders = userOrders.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+
+          // Sort in descending order (latest date first)
+          return dateB - dateA;
+        });
+
+        state.userOrders = sortedUserOrders;
       })
 
       .addCase(updateUserAsync.pending, (state) => {

@@ -334,7 +334,7 @@ export default function UserProfile() {
                           Name: {address.name}
                         </p>
                         <p className="mt-1 truncate text-sm leading-5 text-gray-500">
-                          Street: {address.streetAdress}
+                          Address: {address.streetAdress}
                         </p>
                         <p className="mt-1 truncate text-sm leading-5 text-gray-500">
                           Pin / Zip Code: {address.pinCode}
