@@ -50,7 +50,7 @@ export default function ProductForm() {
     console.log(product);
 
     if (params.id) {
-      product.id = +params.id;
+      product.id = params.id;
       product.rating = selectedProduct.rating || 0;
       dispatch(updateProductAsync(product));
       reset();
@@ -87,7 +87,7 @@ export default function ProductForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={handleSubmit(submit)} noValidate>
       <div className="space-y-12 bg-white p-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">

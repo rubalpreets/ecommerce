@@ -14,7 +14,6 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import {
-  fetchAllProductsAsync,
   selectAllProducts,
   fetchProductsByFilterAsync,
   TotalProducts,
@@ -100,7 +99,9 @@ export default function AdminProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: limit };
-    dispatch(fetchProductsByFilterAsync({ filter, sort, pagination }));
+    dispatch(
+      fetchProductsByFilterAsync({ filter, sort, pagination, admin: true })
+    );
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {

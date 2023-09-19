@@ -7,7 +7,7 @@ import {
   updateCartAsync,
 } from "../features/cart/cartSlice";
 import { useState } from "react";
-import { updateUserAsync } from "../features/auth/authSlice";
+import { updateUserAsync } from "../features/user/userSlice";
 import {
   createOrderAsync,
   selectCurrentOrder,
