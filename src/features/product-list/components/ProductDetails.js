@@ -4,7 +4,6 @@ import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdAsync, selectProduct } from "../productListSlice";
 import { useParams } from "react-router-dom";
-import { selectLoggedInUser } from "../../auth/authSlice";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { discountedPrice } from "../../../app/constants";
 
@@ -46,7 +45,6 @@ export default function ProductDetails() {
   const dispath = useDispatch();
 
   const product = useSelector(selectProduct);
-  const user = useSelector(selectLoggedInUser); // for cart info
   const items = useSelector(selectItems);
 
   useEffect(() => {
@@ -61,7 +59,6 @@ export default function ProductDetails() {
     } else {
       let dispatchvalue = {
         quantity: 1,
-        user: user.id,
         product: product.id,
       };
       dispath(addToCartAsync(dispatchvalue));

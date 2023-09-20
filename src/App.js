@@ -150,8 +150,8 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id));
-      dispatch(fetchloggedInUserAsync(user.id));
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchloggedInUserAsync());
     }
   }, [dispatch, user]);
 

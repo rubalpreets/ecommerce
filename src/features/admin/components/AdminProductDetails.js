@@ -7,7 +7,6 @@ import {
   selectProduct,
 } from "../../product-list/productListSlice";
 import { Link, useParams } from "react-router-dom";
-import { selectLoggedInUser } from "../../auth/authSlice";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { discountedPrice } from "../../../app/constants";
 
@@ -49,7 +48,6 @@ export default function AdminProductDetails() {
   const dispath = useDispatch();
 
   const product = useSelector(selectProduct);
-  const user = useSelector(selectLoggedInUser); // for cart info
   const items = useSelector(selectItems);
 
   useEffect(() => {
@@ -63,7 +61,6 @@ export default function AdminProductDetails() {
       let dispatchvalue = {
         ...product,
         quantity: 1,
-        user: user.id,
         productId: product.id,
       };
       delete dispatchvalue.id;
