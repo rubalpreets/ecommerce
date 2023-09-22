@@ -159,6 +159,7 @@ export const selectAllCategories = (state) =>
   state.product.allProducts.categories;
 export const selectProduct = (state) =>
   state.product.allProducts.selectedProduct;
+export const selectProductLoading = (state) => state.product.allProducts.status;
 
 export const TotalProducts = (state) => state.product.allProducts.totalItems;
 

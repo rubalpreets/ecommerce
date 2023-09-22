@@ -12,23 +12,39 @@ export function createUser(userData) {
   });
 }
 
-export function checkUser(loginInfo) {
+export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
-      const email = loginInfo.email;
-      const password = loginInfo.password;
-
       const response = await fetch("http://localhost:8080/auth/login", {
         method: "POST",
         body: JSON.stringify(loginInfo),
         headers: { "content-type": "application/json" },
       });
 
-      const data = await response.json();
       if (response.ok) {
+        const data = await response.json();
         resolve({ data });
       } else {
-        reject(data);
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+export function checkAuth() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("http://localhost:8080/auth/check");
+
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const error = await response.text();
+        reject(error);
       }
     } catch (err) {
       reject(err);

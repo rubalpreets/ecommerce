@@ -122,6 +122,16 @@ export default function AdminProductDetails() {
 
           {/* Image gallery */}
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+            {product.deleted && (
+              <h2 className="text-base font-semibold leading-7 w-full text-red-900 col-span-6 bg-red-200 px-5 mb-5">
+                This product has been deleted
+              </h2>
+            )}
+            {product.stock <= 0 && (
+              <h2 className="text-base font-semibold leading-7 w-full text-yellow-900 col-span-6 bg-yellow-200 px-5 mb-5">
+                This product is out of stock!
+              </h2>
+            )}
             <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
               <img
                 src={product.images[0]}

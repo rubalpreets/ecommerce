@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { checkUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import { loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
 // import { increment, incrementAsync, selectCount } from "./counterSlice";
 
 export default function Login() {
@@ -22,7 +22,7 @@ export default function Login() {
 
   const submit = (data) => {
     console.log(data);
-    dispatch(checkUserAsync(data));
+    dispatch(loginUserAsync(data));
   };
 
   return (
@@ -99,7 +99,9 @@ export default function Login() {
                     <p className="text-red-500">{errors.password.message}</p>
                   )}
                 </div>
-                {error && <p className="text-red-500">{error.message}</p>}
+                {error && (
+                  <p className="text-red-500">{error || error.message}</p>
+                )}
               </div>
 
               <div>

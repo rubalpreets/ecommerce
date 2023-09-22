@@ -539,12 +539,12 @@ function ProductGrid({ products }) {
                   </div>
                 </div>
                 {product.deleted && (
-                  <p className=" bg-red-900 rounded-md text-white text-center mt-1 ">
+                  <p className=" bg-red-300 rounded-md text-red-900 text-center mt-1 ">
                     Product Deleted
                   </p>
                 )}
                 {product.stock <= 0 && (
-                  <p className=" bg-red-900 rounded-md text-white text-center mt-1 ">
+                  <p className=" bg-yellow-300 rounded-md text-yellow-900 text-center mt-1 ">
                     Out of Stock
                   </p>
                 )}

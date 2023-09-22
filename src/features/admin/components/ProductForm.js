@@ -9,11 +9,14 @@ import {
 } from "../../product-list/productListSlice";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Modal from "../../common/Modal";
 
 export default function ProductForm() {
   const categories = useSelector(selectAllCategories);
   const brands = useSelector(selectAllBrands);
+
+  const [openModal, setOpenModal] = useState(null);
 
   const params = useParams();
 
@@ -90,11 +93,21 @@ export default function ProductForm() {
     <form onSubmit={handleSubmit(submit)} noValidate>
       <div className="space-y-12 bg-white p-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">
+          <h2 className="text-2xl font-semibold leading-7 text-gray-900">
             {params.id ? "Edit Product" : "Add Product"}
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            {selectedProduct.deleted && (
+              <h2 className="text-base font-semibold leading-7 w-full text-red-900 col-span-6 bg-red-200 px-5">
+                This product has been deleted
+              </h2>
+            )}
+            {selectedProduct.stock <= 0 && (
+              <h2 className="text-base font-semibold leading-7 w-full text-yellow-900 col-span-6 bg-yellow-200 px-5 ">
+                This product is out of stock!
+              </h2>
+            )}
             <div className="sm:col-span-6">
               <label
                 htmlFor="username"
@@ -529,12 +542,27 @@ export default function ProductForm() {
         <button className="text-sm font-semibold leading-6 text-gray-900">
           Cancel
         </button>
-        <button
-          onClick={handleDelete}
-          className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-        >
-          delete
-        </button>
+        <Modal
+          title={`Delete ${selectedProduct.title}`}
+          message={"Are you sure you wnat to delete this product?"}
+          dangerOption={"Remove"}
+          cancelOption={"Cancel"}
+          dangerAction={(e) => handleDelete()}
+          cancelAction={(e) => setOpenModal(null)}
+          showModal={openModal}
+        />
+        {selectedProduct && !selectedProduct.deleted && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenModal(true);
+            }}
+            className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+          >
+            Delete
+          </button>
+        )}
+
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
